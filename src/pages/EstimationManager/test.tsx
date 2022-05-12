@@ -5,7 +5,7 @@ import moment from 'moment';
 import * as Styled from './styles';
 
 import estimateOptionList from './EstimateOptionList';
-import { FormItem } from '../../models/estimation';
+import { EstimationOption } from '../../models/estimation';
 import { columns } from './constants';
 import {
   EstimationFilterForm,
@@ -96,7 +96,7 @@ const EstimationManager: React.FC = () => {
             labelCol={{ span: 3 }}
             wrapperCol={{ span: 10 }}
           >
-            {estimateOptionList.map((data: FormItem) => {
+            {estimateOptionList.map((data: EstimationOption) => {
               return (
                 <Form.Item key={data.id} name={data.name} label={data.label}>
                   {data.formItem}
@@ -135,9 +135,7 @@ const fetchEstimations = async (params?: GetEstimationsRequestParams) => {
     });
   }
   if (params?.phoneNumber) {
-    d = d.filter(({ phoneNumber }) =>
-      phoneNumber.includes(params.phoneNumber!),
-    );
+    d = d.filter(({ phoneNumber }) => phoneNumber === params.phoneNumber);
   }
   if (params?.salesType) {
     d = d.filter(({ salesType }) => salesType === params.salesType);

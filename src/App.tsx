@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import EstimationManager from './pages/EstimationManager/test';
+import EstimationManager from './pages/EstimationManager';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import 'antd/dist/antd.css';

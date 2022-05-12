@@ -9,11 +9,11 @@ import {
   discountOptionList,
   estimateStatusOptionList,
 } from '../constants';
-import { FormItem } from '../../../models/estimation';
+import { EstimationOption } from '../../../models/estimation';
 
 const { RangePicker } = DatePicker;
 
-const estimateOptionList: FormItem[] = [
+const estimateOptionList: EstimationOption[] = [
   {
     id: 0,
     label: labelList[0].label,
