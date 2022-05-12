@@ -152,7 +152,6 @@ const EstimationManager: React.FC = () => {
               );
             })}
             <Button htmlType="submit">검색하기</Button>
-            <Button htmlType="submit">검색하기</Button>
           </Form>
         </Layout>
         <Styled.MainContent>
