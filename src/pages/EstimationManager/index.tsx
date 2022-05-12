@@ -4,13 +4,14 @@ import { Layout, Form, Table, Button } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import * as Styled from './styles';
 import estimateOptionList from './EstimateOptionList';
-import { columns, LOGOUT_MESSAGE } from './constants';
+import { columns, LOGOUT_MESSAGE, DATE_FORMAT } from './constants';
 import { LOCAL_STORAGE_KEY } from '../Login/constants';
 import {
   EstimationOption,
   EstimationVO,
   EstimationFilterForm,
 } from '../../models/estimation';
+import moment from 'moment';
 
 const data1: Array<EstimationVO> = Array.from({ length: 10 }).map(
   (_, index) => ({
@@ -42,12 +43,37 @@ const data2: Array<EstimationVO> = Array.from({ length: 10 }).map(
   }),
 );
 
-const data: Array<EstimationVO> = [...data1, ...data2];
+const data3: Array<EstimationVO> = Array.from({ length: 10 }).map(
+  (_, index) => ({
+    key: index,
+    index,
+    estimateDate: '22/05/10 15:00',
+    expirationDate: '22/05/24',
+    name: '법사',
+    gender: '여',
+    birthday: '89/10/2',
+    phoneNumber: '01062424286',
+    salesType: '빠른배송',
+    detail: '상세보기',
+  }),
+);
+
+const data: Array<EstimationVO> = [...data1, ...data2, ...data3];
 
 const fetchEstimations = async (params?: EstimationFilterForm) => {
   await setTimeout(() => {}, 1000);
   let d: Array<EstimationVO> = [];
   d = data;
+
+  console.log(params?.salesType);
+
+  if (params?.estimatedateStDt && params.estimatedateEndDt) {
+    d = d.filter(({ estimateDate }) => {
+      const stDt = moment(params.estimatedateStDt, DATE_FORMAT);
+      const endDt = moment(params.estimatedateEndDt, DATE_FORMAT);
+      return moment(estimateDate, DATE_FORMAT).isBetween(stDt, endDt);
+    });
+  }
   if (params?.name) {
     d = d.filter(({ name }) => name === params.name);
   }
@@ -57,6 +83,9 @@ const fetchEstimations = async (params?: EstimationFilterForm) => {
     );
   }
   if (params?.salesType) {
+    if (params?.salesType === '') {
+      d = d.filter(({ salesType }) => salesType && params.salesType);
+    }
     d = d.filter(({ salesType }) => salesType === params.salesType);
   }
   return d;
@@ -84,9 +113,15 @@ const EstimationManager: React.FC = () => {
     phoneNumber,
     salesType,
   }: EstimationFilterForm) => {
-    fetchEstimations({ estimateDate, name, phoneNumber, salesType }).then(res =>
-      setListData(res),
-    );
+    fetchEstimations({
+      estimatedateStDt: estimateDate && estimateDate[0].format(DATE_FORMAT),
+      estimatedateEndDt: estimateDate && estimateDate[1].format(DATE_FORMAT),
+      name,
+      phoneNumber,
+      salesType,
+    }).then(res => {
+      setListData(res);
+    });
   };
 
   const handleLogout: () => void = () => {

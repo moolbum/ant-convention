@@ -29,7 +29,9 @@ export interface GetEstimationsRequestParams {
 }
 
 export interface EstimationFilterForm {
-  estimateDate: Array<Moment>;
+  estimateDate?: Array<Moment>;
+  estimatedateStDt?: string;
+  estimatedateEndDt?: string;
   name: string;
   phoneNumber: string;
   salesType: string;

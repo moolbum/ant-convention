@@ -1,7 +1,13 @@
 export const USER_NAME_PLACEHOLDER = '회원명을 입력해주세요';
 export const PHONE_NUMBER_PLACEHOLDER = '휴대폰번호를 입력해주세요';
 export const MODEL_NAME_PLACEHOLDER = '모델명을 입력해주세요';
+export const ESTIMATE_TYPE_PLACEHOLDER = '견적유형을 선택해주세요';
+export const SALE_TYPE_PLACEHOLDER = '판매유형을 선택해주세요';
+export const ESTIMATE_STATUS_PLACEHOLDER = '견적상태를 입력해주세요';
+export const DISCOUNT_TYPE_PLACEHOLDER = '할인방법을 선택해주세요';
+
 export const LOGOUT_MESSAGE = '로그아웃 되었습니다.';
+export const DATE_FORMAT = 'YY/MM/DD HH:mm';
 
 export const columns = [
   { id: 0, title: '순서', dataIndex: 'index' },
@@ -58,8 +64,8 @@ export const estimateTypeOptionList = [{ id: 0, value: '전체' }];
 export const estimateStatusOptionList = [{ id: 0, value: '전체' }];
 export const discountOptionList = [{ id: 0, value: '전체' }];
 export const salesTypeOptionList = [
-  { id: 0, value: '전체' },
-  { id: 1, value: 'Direct' },
-  { id: 2, value: '당일배송' },
-  { id: 3, value: '빠른배송' },
+  { id: 0, label: '전체', value: '' },
+  { id: 1, label: 'Direct', value: 'Direct' },
+  { id: 2, label: '당일배송', value: '당일배송' },
+  { id: 3, label: '빠른배송', value: '빠른배송' },
 ];

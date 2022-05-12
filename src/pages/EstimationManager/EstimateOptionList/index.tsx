@@ -8,6 +8,10 @@ import {
   salesTypeOptionList,
   discountOptionList,
   estimateStatusOptionList,
+  SALE_TYPE_PLACEHOLDER,
+  ESTIMATE_STATUS_PLACEHOLDER,
+  DISCOUNT_TYPE_PLACEHOLDER,
+  ESTIMATE_TYPE_PLACEHOLDER,
 } from '../constants';
 import { EstimationOption } from '../../../models/estimation';
 
@@ -39,7 +43,7 @@ const estimateOptionList: EstimationOption[] = [
     label: labelList[3].label,
     name: labelList[3].name,
     formItem: (
-      <Select>
+      <Select placeholder={ESTIMATE_TYPE_PLACEHOLDER}>
         <Select.Option value={estimateTypeOptionList[0].value}>
           {estimateTypeOptionList[0].value}
         </Select.Option>
@@ -51,11 +55,11 @@ const estimateOptionList: EstimationOption[] = [
     label: labelList[4].label,
     name: labelList[4].name,
     formItem: (
-      <Select>
+      <Select placeholder={SALE_TYPE_PLACEHOLDER}>
         {salesTypeOptionList.map(data => {
           return (
             <Select.Option key={data.id} value={data.value}>
-              {data.value}
+              {data.label}
             </Select.Option>
           );
         })}
@@ -67,7 +71,7 @@ const estimateOptionList: EstimationOption[] = [
     label: labelList[5].label,
     name: labelList[5].name,
     formItem: (
-      <Select>
+      <Select placeholder={ESTIMATE_STATUS_PLACEHOLDER}>
         <Select.Option value={estimateStatusOptionList[0].value}>
           {estimateStatusOptionList[0].value}
         </Select.Option>{' '}
@@ -85,7 +89,7 @@ const estimateOptionList: EstimationOption[] = [
     label: labelList[7].label,
     name: labelList[7].name,
     formItem: (
-      <Select>
+      <Select placeholder={DISCOUNT_TYPE_PLACEHOLDER}>
         <Select.Option value={discountOptionList[0].value}>
           {discountOptionList[0].value}
         </Select.Option>
