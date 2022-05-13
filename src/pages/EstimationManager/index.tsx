@@ -10,10 +10,11 @@ import {
   EstimationOption,
   EstimationVO,
   EstimationFilterForm,
+  EstimationManagerResponse,
 } from '../../models/estimation';
 import moment from 'moment';
 
-const data1: Array<EstimationVO> = Array.from({ length: 10 }).map(
+const data1: EstimationManagerResponse = Array.from({ length: 10 }).map(
   (_, index) => ({
     key: index,
     index,
@@ -24,11 +25,11 @@ const data1: Array<EstimationVO> = Array.from({ length: 10 }).map(
     birthday: '94/06/10',
     phoneNumber: '01080293907',
     salesType: '당일배송',
-    detail: '상세보기',
+    detail: <Button>상세보기</Button>,
   }),
 );
 
-const data2: Array<EstimationVO> = Array.from({ length: 10 }).map(
+const data2: EstimationManagerResponse = Array.from({ length: 10 }).map(
   (_, index) => ({
     key: index,
     index,
@@ -39,11 +40,11 @@ const data2: Array<EstimationVO> = Array.from({ length: 10 }).map(
     birthday: '88/10/2',
     phoneNumber: '01024744286',
     salesType: 'Direct',
-    detail: '상세보기',
+    detail: <Button>상세보기</Button>,
   }),
 );
 
-const data3: Array<EstimationVO> = Array.from({ length: 10 }).map(
+const data3: EstimationManagerResponse = Array.from({ length: 10 }).map(
   (_, index) => ({
     key: index,
     index,
@@ -54,18 +55,17 @@ const data3: Array<EstimationVO> = Array.from({ length: 10 }).map(
     birthday: '89/10/2',
     phoneNumber: '01062424286',
     salesType: '빠른배송',
-    detail: '상세보기',
+    detail: <Button>상세보기</Button>,
   }),
 );
 
-const data: Array<EstimationVO> = [...data1, ...data2, ...data3];
+export const data: EstimationManagerResponse = [...data1, ...data2, ...data3];
 
-const fetchEstimations = async (params?: EstimationFilterForm) => {
+export const fetchEstimations = async (params?: EstimationFilterForm) => {
   await setTimeout(() => {}, 1000);
   let d: Array<EstimationVO> = [];
   d = data;
-
-  console.log(params?.salesType);
+  console.log(params);
 
   if (params?.estimatedateStDt && params.estimatedateEndDt) {
     d = d.filter(({ estimateDate }) => {
@@ -108,10 +108,16 @@ const EstimationManager: React.FC = () => {
   }, []);
 
   const handleSubmit = ({
+    key,
+    index,
+    gender,
+    birthday,
     estimateDate,
     name,
     phoneNumber,
     salesType,
+    discount,
+    detail,
   }: EstimationFilterForm) => {
     fetchEstimations({
       estimatedateStDt: estimateDate && estimateDate[0].format(DATE_FORMAT),
@@ -119,6 +125,12 @@ const EstimationManager: React.FC = () => {
       name,
       phoneNumber,
       salesType,
+      discount,
+      key,
+      index,
+      gender,
+      birthday,
+      detail: <Button>상세보기</Button>,
     }).then(res => {
       setListData(res);
     });

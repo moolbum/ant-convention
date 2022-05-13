@@ -60,9 +60,13 @@ export const labelList = [
   },
 ];
 
-export const estimateTypeOptionList = [{ id: 0, value: '전체' }];
-export const estimateStatusOptionList = [{ id: 0, value: '전체' }];
-export const discountOptionList = [{ id: 0, value: '전체' }];
+export const estimateTypeOptionList = [{ id: 0, label: '전체', value: '' }];
+export const estimateStatusOptionList = [{ id: 0, label: '전체', value: '' }];
+export const discountOptionList = [
+  { id: 0, label: '전체', value: '' },
+  { id: 1, label: '포인트적립', value: '포인트적립' },
+  { id: 2, label: '무이자', value: '무이자' },
+];
 export const salesTypeOptionList = [
   { id: 0, label: '전체', value: '' },
   { id: 1, label: 'Direct', value: 'Direct' },

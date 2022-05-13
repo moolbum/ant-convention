@@ -17,7 +17,7 @@ export interface EstimationVO {
   birthday?: string;
   phoneNumber?: string;
   salesType?: string;
-  detail?: string;
+  detail?: JSX.Element;
 }
 
 export interface GetEstimationsRequestParams {
@@ -32,9 +32,15 @@ export interface EstimationFilterForm {
   estimateDate?: Array<Moment>;
   estimatedateStDt?: string;
   estimatedateEndDt?: string;
-  name: string;
+  name?: string;
   phoneNumber: string;
-  salesType: string;
+  salesType?: string;
+  discount?: string;
+  key?: number;
+  index?: number;
+  gender?: string;
+  birthday?: string;
+  detail?: JSX.Element;
 }
 
 export interface EstimationOption {

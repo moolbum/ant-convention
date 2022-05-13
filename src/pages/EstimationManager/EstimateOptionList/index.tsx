@@ -45,7 +45,7 @@ const estimateOptionList: Array<EstimationOption> = [
     formItem: (
       <Select placeholder={ESTIMATE_TYPE_PLACEHOLDER}>
         <Select.Option value={estimateTypeOptionList[0].value}>
-          {estimateTypeOptionList[0].value}
+          {estimateTypeOptionList[0].label}
         </Select.Option>
       </Select>
     ),
@@ -73,8 +73,8 @@ const estimateOptionList: Array<EstimationOption> = [
     formItem: (
       <Select placeholder={ESTIMATE_STATUS_PLACEHOLDER}>
         <Select.Option value={estimateStatusOptionList[0].value}>
-          {estimateStatusOptionList[0].value}
-        </Select.Option>{' '}
+          {estimateStatusOptionList[0].label}
+        </Select.Option>
       </Select>
     ),
   },
@@ -90,9 +90,13 @@ const estimateOptionList: Array<EstimationOption> = [
     name: labelList[7].name,
     formItem: (
       <Select placeholder={DISCOUNT_TYPE_PLACEHOLDER}>
-        <Select.Option value={discountOptionList[0].value}>
-          {discountOptionList[0].value}
-        </Select.Option>
+        {discountOptionList.map(data => {
+          return (
+            <Select.Option key={data.id} value={data.value}>
+              {data.label}
+            </Select.Option>
+          );
+        })}
       </Select>
     ),
   },
