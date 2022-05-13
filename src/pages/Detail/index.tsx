@@ -5,7 +5,7 @@ import { Content, Header } from 'antd/lib/layout/layout';
 import { fetchEstimations } from '../EstimationManager';
 import * as Styled from './styles';
 import { EstimationVO } from '../../models/estimation';
-// import { details } from './constants';
+import { details } from './constants';
 
 const Detail: React.FC = () => {
   const params = useParams<string>();
@@ -35,6 +35,13 @@ const Detail: React.FC = () => {
             <Styled.List>판매유형: {detailData.salesType}</Styled.List>
           </ul>
         )}
+        {/* {details.map(data => {
+          return (
+            <Styled.List key={data.id}>
+              {data.title}: {data.value}
+            </Styled.List>
+          );
+        })} */}
       </Content>
     </Layout>
   );

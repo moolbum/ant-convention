@@ -13,6 +13,8 @@ import {
   EstimationManagerResponse,
 } from '../../models/estimation';
 import moment from 'moment';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const data1: EstimationManagerResponse = Array.from({ length: 10 }).map(
   (_, index) => ({
@@ -25,7 +27,11 @@ const data1: EstimationManagerResponse = Array.from({ length: 10 }).map(
     birthday: '94/06/10',
     phoneNumber: '01080293907',
     salesType: '당일배송',
-    detail: <Button>상세보기</Button>,
+    detail: (
+      <Link to={`/detail/${index}`}>
+        <Button>상세보기</Button>
+      </Link>
+    ),
   }),
 );
 
@@ -40,7 +46,11 @@ const data2: EstimationManagerResponse = Array.from({ length: 10 }).map(
     birthday: '88/10/2',
     phoneNumber: '01024744286',
     salesType: 'Direct',
-    detail: <Button>상세보기</Button>,
+    detail: (
+      <Link to={`/detail/${index}`}>
+        <Button>상세보기</Button>
+      </Link>
+    ),
   }),
 );
 
@@ -55,7 +65,11 @@ const data3: EstimationManagerResponse = Array.from({ length: 10 }).map(
     birthday: '89/10/2',
     phoneNumber: '01062424286',
     salesType: '빠른배송',
-    detail: <Button>상세보기</Button>,
+    detail: (
+      <Link to={`/detail/${index}`}>
+        <Button>상세보기</Button>
+      </Link>
+    ),
   }),
 );
 
@@ -130,11 +144,12 @@ const EstimationManager: React.FC = () => {
       index,
       gender,
       birthday,
-      detail: <Button>상세보기</Button>,
     }).then(res => {
       setListData(res);
     });
   };
+
+  console.log(listData);
 
   const handleLogout: () => void = () => {
     localStorage.removeItem(LOCAL_STORAGE_KEY);
