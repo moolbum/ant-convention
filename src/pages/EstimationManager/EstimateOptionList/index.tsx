@@ -17,7 +17,7 @@ import { EstimationOption } from '../../../models/estimation';
 
 const { RangePicker } = DatePicker;
 
-const estimateOptionList: EstimationOption[] = [
+const estimateOptionList: Array<EstimationOption> = [
   {
     id: 0,
     label: labelList[0].label,

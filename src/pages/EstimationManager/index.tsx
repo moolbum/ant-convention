@@ -84,7 +84,7 @@ const fetchEstimations = async (params?: EstimationFilterForm) => {
   }
   if (params?.salesType) {
     if (params?.salesType === '') {
-      d = d.filter(({ salesType }) => salesType && params.salesType);
+      d = d.filter(({ salesType }) => salesType !== params.salesType);
     }
     d = d.filter(({ salesType }) => salesType === params.salesType);
   }
